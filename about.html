@@ -13,16 +13,16 @@
         font-family: 'Plus Jakarta Sans', sans-serif; 
         background-color: #ffffff; 
         scroll-behavior: smooth; 
-        margin: 0; /* Đảm bảo không bị lề trắng thừa */
+        margin: 0; 
     }
 
-    /* Ẩn scrollbar cho các thành phần cần thiết */
+
     .no-scrollbar::-webkit-scrollbar { 
         display: none; 
     }
     .no-scrollbar {
-        -ms-overflow-style: none;  /* IE and Edge */
-        scrollbar-width: none;  /* Firefox */
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
     }
 
     .text-gradient { 
@@ -31,18 +31,18 @@
         -webkit-text-fill-color: transparent; 
     }
     
-    /* Modals */
+
     .modal-overlay { 
         display: none; 
         position: fixed; 
         inset: 0; 
         z-index: 1000; 
-        background: rgba(0,0,0,0.85); /* Giảm độ tối một chút cho đỡ gắt */
+        background: rgba(0,0,0,0.85); 
         backdrop-filter: blur(15px); 
         align-items: center; 
         justify-content: center; 
         padding: 20px; 
-        opacity: 0; /* Chuẩn bị cho animation */
+        opacity: 0; 
     }
 
     .modal-overlay.active { 
@@ -55,18 +55,61 @@
         to { opacity: 1; transform: scale(1); } 
     }
     
-    /* Card Interactions */
+
     .card-hover { 
         transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
         cursor: pointer; 
-        will-change: transform; /* Tối ưu hiệu năng khi di chuột */
+        will-change: transform; 
     }
 
     .card-hover:hover { 
         transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* Thêm bóng cho đỡ trống layout */
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
     }
 
+    .carousel-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        overflow: hidden; 
+        padding: 40px 0 100px 0;
+        cursor: grab;
+        perspective: 2500px; 
+    }
+    .carousel-section:active {
+        cursor: grabbing;
+    }
+
+    .team-slider {
+        position: relative;
+        width: 160px; 
+        height: 220px; 
+        transform-style: preserve-3d;
+        transform: rotateX(0deg) rotateY(0deg);
+        transition: transform 0.1s ease-out; 
+    }
+
+    .team-item {
+        position: absolute;
+        inset: 0;
+        transform: rotateY(calc((var(--position) - 1) * (360deg / var(--quantity)))) 
+                   translateZ(500px); 
+        backface-visibility: hidden;
+        user-select: none;
+        -webkit-user-drag: none;
+    }
+    
+    .team-item .card-hover {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: white;
+        border-radius: 1.5rem;
+        padding: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
 
 </style>
 </head>
@@ -268,19 +311,19 @@
         </div>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div class="bg-white p-10 rounded-[3rem] border border-gray-100 card-hover shadow-sm hover:shadow-xl transition-all">
-                <div class="text-4xl mb-6">⚡</div>
+                <div class="text-4xl mb-8">⚡</div>
                 <h4 class="text-lg font-black uppercase italic mb-4 tracking-tight leading-tight">Hiệu Suất Vượt Trội</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">Hệ thống xử lý giao dịch và xác thực vé theo thời gian thực (real-time), đảm bảo tính liên tục tuyệt đối.</p>
+                <p class="text-gray-500 text-sm leading-relaxed font-medium mt-2">Hệ thống xử lý giao dịch và xác thực vé theo thời gian thực (real-time), đảm bảo tính liên tục tuyệt đối.</p>
             </div>
             <div class="bg-white p-10 rounded-[3rem] border border-gray-100 card-hover shadow-sm hover:shadow-xl transition-all">
-                <div class="text-4xl mb-6">🤝</div>
+                <div class="text-4xl mb-6">🧠</div>
                 <h4 class="text-lg font-black uppercase italic mb-4 tracking-tight leading-tight">Tư Duy Agile</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">Đề cao tinh thần trao quyền, đổi mới sáng tạo liên tục và gắn kết chặt chẽ giữa các khối chuyên môn.</p>
+                <p class="text-gray-500 text-sm leading-relaxed font-medium mt-2">Đề cao tinh thần trao quyền, đổi mới sáng tạo liên tục và gắn kết chặt chẽ giữa các khối chuyên môn.</p>
             </div>
             <div class="bg-white p-10 rounded-[3rem] border border-gray-100 card-hover shadow-sm hover:shadow-xl transition-all">
                 <div class="text-4xl mb-6">🔒</div>
                 <h4 class="text-lg font-black uppercase italic mb-4 tracking-tight leading-tight">Bảo Mật Enterprise</h4>
-                <p class="text-gray-500 text-sm leading-relaxed">Áp dụng mã hóa đầu cuối, đảm bảo an toàn lịch sử giao dịch và quyền riêng tư nghiêm ngặt.</p>
+                <p class="text-gray-500 text-sm leading-relaxed font-medium mt-2">Áp dụng mã hóa đầu cuối, đảm bảo an toàn lịch sử giao dịch và quyền riêng tư nghiêm ngặt.</p>
             </div>
         </div>
     </section>
@@ -289,13 +332,13 @@
     <section class="mb-40 max-w-6xl mx-auto">
         <h3 class="text-3xl font-black italic tracking-tighter mb-20 uppercase text-center">Hành trình <span class="text-blue-600">Phát triển</span></h3>
         <div class="space-y-16 max-w-3xl mx-auto border-l-2 border-gray-100 pl-12 relative">
-            <div class="relative">
+            <div class="relative card-hover p-4 rounded-2xl hover:bg-gray-50 transition-colors">
                 <div class="w-4 h-4 bg-pink-500 rounded-full absolute -left-[49px] top-2"></div>
                 <div class="font-black italic text-2xl text-pink-500 mb-2">2025</div>
                 <h5 class="text-xl font-black italic uppercase">Khởi đầu khát vọng</h5>
                 <p class="text-gray-500 mt-2 font-medium italic">Thành lập tại VNU-IS với 6 thành viên.</p>
             </div>
-            <div class="relative">
+            <div class="relative card-hover p-4 rounded-2xl hover:bg-gray-50 transition-colors">
                 <div class="w-4 h-4 bg-blue-500 rounded-full absolute -left-[49px] top-2"></div>
                 <div class="font-black italic text-2xl text-blue-500 mb-2">2026</div>
                 <h5 class="text-xl font-black italic uppercase">Mở rộng khu vực</h5>
@@ -307,8 +350,9 @@
     <!-- CORE TEAM -->
     <section class="mb-40 max-w-6xl mx-auto">
         <h3 class="text-3xl font-black italic tracking-tighter mb-16 uppercase border-b-2 border-gray-100 pb-8 text-right">Đội ngũ <span class="text-pink-500">Core Team</span></h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6" id="team-grid">
-            <!-- Render từ JS -->
+        <div class="carousel-section">
+            <div class="team-slider" id="team-slider">
+                </div>
         </div>
     </section>
 
@@ -319,7 +363,7 @@
                 <div class="relative z-10">
                     <h3 class="text-5xl font-black italic tracking-tighter mb-10 leading-tight">Sẵn sàng kiến tạo tương lai?</h3>
                     <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
-                        <a href="index.html" class="px-14 py-5 bg-white text-black rounded-full font-black uppercase text-xs tracking-widest hover:scale-105 transition-all">Tham gia ngay</a>
+                        <a href="index.html" class="px-14 py-5 bg-gradient-to-r from-blue-500 to-pink-500 text-white shadow-lg shadow-pink-500/30 rounded-full font-black uppercase text-xs tracking-widest hover:scale-105 transition-all">Tham gia ngay</a>
                         <button onclick="toggleJobsModal(true)" class="px-12 py-5 border-2 border-white/20 rounded-full font-black uppercase text-xs tracking-widest hover:bg-white hover:text-black transition-all">Tuyển dụng & Portfolio</button>
                     </div>
                 </div>
@@ -440,7 +484,7 @@
                         </p>
                         <p class="text-xs text-gray-500 font-bold leading-relaxed flex items-start">
                             <i class="fa-solid fa-building mt-1 mr-3 text-blue-500"></i>
-                            Tòa nhà Viettel, 285 Cách Mạng Tháng Tám, Quận 10, TP. Hồ Chí Minh.
+                            Tòa nhà VNU-IS, 1 Phan Tây Nhạc, Nam Từ Liêm, Hà Nội.
                         </p>
                     </div>
                 </div>
@@ -463,10 +507,19 @@
         </div>
     </footer>
 
-    <script>
-        // DATA TV
+<script>
+        // ==========================================
+        // DATA TV & JOBS (ĐÃ CẬP NHẬT 12 NGƯỜI)
+        // ==========================================
         const team = [
             { name: "Diệu Thảo", role: "Founder & CEO", img: "Felix", bio: "Hơn 5 năm kinh nghiệm Fintech, dẫn dắt tầm nhìn chiến lược cho Elysium toàn cầu." },
+            { name: "Minh Anh", role: "CTO", img: "Aneka", bio: "Chuyên gia bảo mật Blockchain, cựu kỹ sư cấp cao tại thung lũng Silicon." },
+            { name: "Trà My", role: "Lead Dev", img: "Jack", bio: "Phù thủy Backend, người đảm bảo hệ thống luôn ổn định dưới áp lực hàng triệu user." },
+            { name: "Tiến Thịnh", role: "Lead Designer", img: "B", bio: "Đam mê thiết kế tối giản, người kiến tạo nên ngôn ngữ hình ảnh đẳng cấp của Elysium." },
+            { name: "Việt Công", role: "Marketing Lead", img: "C", bio: "Chuyên gia Branding & Digital Growth, đưa Elysium phủ sóng thị trường Đông Nam Á." },
+            { name: "Minh Đạt", role: "Financial Specialist", img: "D", bio: "Quản lý dòng tiền và các giải pháp thanh toán thông minh tích hợp trên nền tảng." },
+            // 6 THÀNH VIÊN MỚI THÊM VÀO
+           { name: "Diệu Thảo", role: "Founder & CEO", img: "Felix", bio: "Hơn 5 năm kinh nghiệm Fintech, dẫn dắt tầm nhìn chiến lược cho Elysium toàn cầu." },
             { name: "Minh Anh", role: "CTO", img: "Aneka", bio: "Chuyên gia bảo mật Blockchain, cựu kỹ sư cấp cao tại thung lũng Silicon." },
             { name: "Trà My", role: "Lead Dev", img: "Jack", bio: "Phù thủy Backend, người đảm bảo hệ thống luôn ổn định dưới áp lực hàng triệu user." },
             { name: "Tiến Thịnh", role: "Lead Designer", img: "B", bio: "Đam mê thiết kế tối giản, người kiến tạo nên ngôn ngữ hình ảnh đẳng cấp của Elysium." },
@@ -474,7 +527,6 @@
             { name: "Minh Đạt", role: "Financial Specialist", img: "D", bio: "Quản lý dòng tiền và các giải pháp thanh toán thông minh tích hợp trên nền tảng." }
         ];
 
-        // DATA JOBS
         const jobs = [
             { id: 'fe', title: "Frontend Developer", cat: "Engineering", pay: "$1,500 - $3,000", color: "pink", req: "React/NextJS, Tailwind", ben: "Macbook Pro, Thưởng Quý" },
             { id: 'be', title: "Backend Engineer", cat: "Engineering", pay: "$1,800 - $3,500", color: "blue", req: "NodeJS, PostgreSQL", ben: "Bảo hiểm quốc tế, Remote" },
@@ -482,33 +534,135 @@
             { id: 'mkt', title: "Digital Marketing", cat: "Growth", pay: "$1,000 - $1,800", color: "yellow", req: "Ads, Content Strategy", ben: "Thưởng doanh số, Vé Event" }
         ];
 
-        // 1. Render Team
-        const teamGrid = document.getElementById('team-grid');
-        team.forEach((m, i) => {
-            teamGrid.innerHTML += `
-                <div class="text-center group card-hover" onclick="showMemberDetail(${i})">
-                    <div class="aspect-square rounded-3xl bg-gray-100 mb-4 overflow-hidden border-2 border-transparent group-hover:border-pink-500">
-                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${m.img}" class="w-full h-full object-cover">
-                    </div>
-                    <h5 class="font-black italic text-xs uppercase">${m.name}</h5>
-                    <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest">${m.role}</p>
-                </div>`;
-        });
+        // ==========================================
+        // 1. RENDER TEAM & 3D CAROUSEL LOGIC
+        // ==========================================
+        const teamSlider = document.getElementById('team-slider');
+        const carouselSection = document.querySelector('.carousel-section');
+        
+        // Biến kiểm tra click hợp lệ 
+        let isClickValid = true; 
 
-        // 2. Render Jobs
+        if(teamSlider && carouselSection) {
+            teamSlider.style.setProperty('--quantity', team.length);
+            teamSlider.innerHTML = ''; 
+
+            team.forEach((m, i) => {
+                teamSlider.innerHTML += `
+                    <div class="team-item" style="--position: ${i + 1};">
+                        <div class="text-center group card-hover border-2 border-transparent hover:border-pink-500 transition-all bg-white rounded-[1.5rem] p-4 shadow-sm h-full w-full flex flex-col justify-center" onclick="showMemberDetail(${i})" style="cursor:pointer">
+                            <div class="aspect-square rounded-2xl bg-gray-100 mb-4 overflow-hidden pointer-events-none">
+                                <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${m.img}" class="w-full h-full object-cover">
+                            </div>
+                            <h5 class="font-black italic text-xs uppercase">${m.name}</h5>
+                            <p class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mt-1">${m.role}</p>
+                        </div>
+                    </div>`;
+            });
+
+            // Logic Kéo Xoay 3D
+            let isDragging = false;
+            let startX = 0;
+            let currentRotateY = 0;
+            let tempRotateY = 0;
+
+            carouselSection.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                isClickValid = true; 
+                startX = e.clientX;
+                teamSlider.style.transition = 'none';
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                let moveX = e.clientX - startX;
+                
+                if (Math.abs(moveX) > 5) isClickValid = false; 
+                
+                tempRotateY = currentRotateY + (moveX / 4); 
+                teamSlider.style.transform = `rotateX(0deg) rotateY(${tempRotateY}deg)`;
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    currentRotateY = tempRotateY;
+                    teamSlider.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                }
+            });
+
+            carouselSection.addEventListener('touchstart', (e) => {
+                isDragging = true;
+                isClickValid = true;
+                startX = e.touches[0].clientX;
+                teamSlider.style.transition = 'none';
+            }, {passive: true});
+
+            window.addEventListener('touchmove', (e) => {
+                if (!isDragging) return;
+                let moveX = e.touches[0].clientX - startX;
+                
+                if (Math.abs(moveX) > 5) isClickValid = false;
+                
+                tempRotateY = currentRotateY + (moveX / 4); 
+                teamSlider.style.transform = `rotateX(0deg) rotateY(${tempRotateY}deg)`;
+            });
+
+            window.addEventListener('touchend', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    currentRotateY = tempRotateY;
+                    teamSlider.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                }
+            });
+
+            // Auto Play
+            const degreePerItem = 360 / team.length; 
+            let autoRotateTimer;
+
+            function startAutoRotate() {
+                clearInterval(autoRotateTimer); 
+                autoRotateTimer = setInterval(() => {
+                    currentRotateY -= degreePerItem; 
+                    tempRotateY = currentRotateY; 
+                    teamSlider.style.transition = 'transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1)';
+                    teamSlider.style.transform = `rotateX(0deg) rotateY(${currentRotateY}deg)`;
+                }, 3000); 
+            }
+
+            function stopAutoRotate() {
+                clearInterval(autoRotateTimer);
+            }
+
+            startAutoRotate();
+            carouselSection.addEventListener('mouseenter', stopAutoRotate);
+            carouselSection.addEventListener('mouseleave', startAutoRotate);
+            carouselSection.addEventListener('touchstart', stopAutoRotate, {passive: true});
+            carouselSection.addEventListener('touchend', startAutoRotate);
+        }
+
+        // ==========================================
+        // 2. RENDER JOBS
+        // ==========================================
         const jobsGrid = document.getElementById('jobs-grid');
-        jobs.forEach(j => {
-            jobsGrid.innerHTML += `
-                <div class="job-card p-8 bg-gray-50 rounded-[3rem] card-hover border-2 border-transparent" onclick="showJobDetail('${j.id}')">
-                    <span class="text-[9px] font-black bg-${j.color}-100 text-${j.color}-600 px-4 py-1 rounded-full uppercase mb-4 inline-block">${j.cat}</span>
-                    <h4 class="text-xl font-black italic uppercase mb-2">${j.title}</h4>
-                    <p class="text-xs text-gray-400 font-bold uppercase mb-4 italic">${j.pay}</p>
-                    <span class="text-[9px] font-black uppercase text-gray-500">Xem & Nộp hồ sơ <i class="fa-solid fa-arrow-right ml-1"></i></span>
-                </div>`;
-        });
+        if(jobsGrid) {
+            jobs.forEach(j => {
+                jobsGrid.innerHTML += `
+                    <div class="job-card p-8 bg-gray-50 rounded-[3rem] card-hover border-2 border-transparent cursor-pointer" onclick="showJobDetail('${j.id}')">
+                        <span class="text-[9px] font-black bg-${j.color}-100 text-${j.color}-600 px-4 py-1 rounded-full uppercase mb-4 inline-block">${j.cat}</span>
+                        <h4 class="text-xl font-black italic uppercase mb-2">${j.title}</h4>
+                        <p class="text-xs text-gray-400 font-bold uppercase mb-4 italic">${j.pay}</p>
+                        <span class="text-[9px] font-black uppercase text-gray-500">Xem & Nộp hồ sơ <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                    </div>`;
+            });
+        }
 
-        // 3. Member Detail Logic
+        // ==========================================
+        // 3. MODALS & FORMS LOGIC
+        // ==========================================
         function showMemberDetail(i) {
+            if(!isClickValid) return; 
+
             const m = team[i];
             const info = document.getElementById('member-info');
             info.innerHTML = `
@@ -520,7 +674,6 @@
             toggleMemberModal(true);
         }
 
-        // 4. Job Detail & Form Logic
         function showJobDetail(id) {
             const j = jobs.find(x => x.id === id);
             document.getElementById('job-list').classList.add('hidden');
@@ -556,21 +709,6 @@
                 btn.disabled = false;
             }, 1800);
         }
-        function toggleDarkMode() {
-    const html = document.documentElement;
-    if (html.classList.contains('dark')) {
-        html.classList.remove('dark');
-        localStorage.setItem('theme', 'light');
-    } else {
-        html.classList.add('dark');
-        localStorage.setItem('theme', 'dark');
-    }
-}
-
-// Kiểm tra khi load trang
-if (localStorage.getItem('theme') === 'dark') {
-    document.documentElement.classList.add('dark');
-}
 
         function toggleJobsModal(s) { document.getElementById('jobs-modal').classList.toggle('active', s); if(!s) backToList(); document.body.style.overflow = s ? 'hidden' : 'auto'; }
         function toggleMemberModal(s) { document.getElementById('member-modal').classList.toggle('active', s); document.body.style.overflow = s ? 'hidden' : 'auto'; }
