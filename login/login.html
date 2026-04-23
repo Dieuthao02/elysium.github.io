@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Đăng nhập - EventHub</title>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net"></script>
+</head>
+<body>
+    <div class="card">
+        <h2>Đăng nhập</h2>
+        <p>Vui lòng đăng nhập để tiếp tục</p>
+        <p id="error-msg" style="color: #ff4d4d; display: none; font-size: 13px; margin-bottom: 10px;">
+            ⚠ Thông tin không chính xác!
+        </p>
+        <input type="text" id="login_user" placeholder="Email hoặc Số điện thoại">
+        <input type="password" id="login_pass" placeholder="Mật khẩu">
+        <button type="button" class="btn-main" onclick="handleLogin()">Đăng nhập</button>
+        <div class="divider">Hoặc tiếp tục với</div>
+        <div class="social-group">
+            <a href="https://accounts.google.com" target="_blank" class="btn-social">
+                <img src="app/google.png" alt="Google">
+                <span>Google</span>
+            </a>
+            <a href="https://www.facebook.com" target="_blank" class="btn-social">
+                <img src="app/facebook.png" alt="Facebook">
+                <span>Facebook</span>
+            </a>
+            <a href="https://www.tiktok.com" target="_blank" class="btn-social">
+                <img src="app/tiktok.png" alt="TikTok">
+                <span>TikTok</span>
+            </a>
+        </div>
+        <div class="link-switch">
+            Chưa có tài khoản? <a href="register.html">Đăng ký ngay</a>
+        </div>
+    </div>
+    <script>
+        /**
+         * Hàm handleLogin: Xử lý logic kiểm tra thông tin người dùng
+         */
+        function handleLogin() {
+            // 1. Thu thập dữ liệu người dùng vừa nhập vào form
+            const userInput = document.getElementById('login_user').value.trim();
+            const passInput = document.getElementById('login_pass').value;
+            const errorElement = document.getElementById('error-msg');
+            // 2. Truy xuất dữ liệu đã được lưu trữ từ LocalStorage (bộ nhớ trình duyệt)
+            // Đây là dữ liệu được lưu từ bước Đăng ký thành công
+            const sEmail = localStorage.getItem('storedEmail');
+            const sPhone = localStorage.getItem('storedPhone');
+            const sPass = localStorage.getItem('storedPass');
+            // 3. Kiểm tra logic xác thực
+            // Cho phép đăng nhập bằng cả Email HOẶC Số điện thoại, nhưng phải đúng Mật khẩu
+            const isUserValid = (userInput === sEmail || userInput === sPhone);
+            const isPassValid = (passInput === sPass);
+            if (isUserValid && isPassValid) {
+                // Trường hợp Đăng nhập đúng
+                alert("🎉 Đăng nhập thành công!");
+                // Lưu trạng thái đăng nhập để hệ thống ghi nhớ (tùy chọn)
+                localStorage.setItem('isLoggedIn', 'true');
+                // Chuyển hướng người dùng vào trang quản lý (Dashboard)
+                window.location.href = "dashboard.html";
+            } else {
+                // Trường hợp Đăng nhập sai
+                // Hiện dòng chữ thông báo lỗi màu đỏ trên giao diện
+                errorElement.style.display = 'block';  
+                // Cảnh báo bằng hộp thoại cho người dùng dễ thấy
+                alert("⚠ Email/SĐT hoặc Mật khẩu không đúng!");
+            }
+        }
+    </script>
+</body>
+</html>

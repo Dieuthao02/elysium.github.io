@@ -1,0 +1,139 @@
+/* --- 1. Thiết lập cơ bản (Reset & Fonts) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+/* --- 2. Định dạng khung nền (Body & Background) --- */
+body {
+    background-color: #000000;
+    color: #ffffff;
+    height: 100vh; 
+    width: 100vw; 
+    display: flex;
+    justify-content: center; /* Căn giữa card theo chiều ngang */
+    align-items: center;     /* Căn giữa card theo chiều dọc */
+    overflow: hidden;        /* Ngăn cuộn trang không cần thiết */
+}
+/* --- 3. Khối bao ngoài (Card Container) --- */
+.card {
+    background: #121212; 
+    padding: 2.5rem;
+    border-radius: 16px;
+    border: 1px solid #282828;
+    width: 100%;
+    max-width: 400px; 
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.7); /* Đổ bóng tạo chiều sâu */
+}
+/* --- 4. Tiêu đề và Văn bản hướng dẫn --- */
+h2 { 
+    margin-bottom: 10px; 
+    font-size: 24px; 
+    font-weight: 600; 
+}
+p { 
+    color: #a0a0a0; 
+    margin-bottom: 25px; 
+    font-size: 14px; 
+}
+/* --- 5. Trường nhập liệu (Input Fields) --- */
+input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+    transition: border 0.3s;
+}
+input:focus { 
+    border-color: #00f2fe; /* Màu xanh neon khi người dùng click vào */
+}
+/* --- 6. Nhóm xử lý OTP --- */
+.otp-group { 
+    display: flex; 
+    gap: 8px; /* Khoảng cách giữa ô nhập và nút gửi mã */
+}
+.btn-otp {
+    background: #282828;
+    color: #00f2fe;
+    border: 1px solid #333;
+    padding: 0 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 12px;
+    white-space: nowrap;
+    transition: 0.3s;
+}
+.btn-otp:hover {
+    border-color: #00f2fe;
+    background: #333;
+}
+/* --- 7. Nút bấm chính (Main Action Button) --- */
+.btn-main {
+    width: 100%;
+    padding: 14px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    /* Dải màu Gradient từ xanh cyan sang tím hồng */
+    background: linear-gradient(135deg, #00f2fe 0%, #fb00ff 100%);
+    color: white;
+    text-decoration: none;
+    display: block;
+    transition: transform 0.2s, opacity 0.2s;
+}
+.btn-main:hover {
+    opacity: 0.9;
+    transform: scale(1.02) translateY(-2px); /* Hiệu ứng nổi lên nhẹ */
+}
+/* --- 8. Đăng nhập mạng xã hội (Social Buttons) --- */
+.social-group {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+.btn-social {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none; 
+    background: #1e1e1e;
+    border: 1px solid #333;
+    padding: 10px;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.btn-social:hover {
+    border-color: #00f2fe;
+}
+.btn-social img {
+    width: 24px;              
+    height: 24px;             
+    object-fit: contain;      
+    display: block;           
+}
+/* --- 9. Các liên kết điều hướng (Switch Link) --- */
+.link-switch { 
+    margin-top: 20px; 
+    font-size: 14px; 
+    color: #a0a0a0; 
+}
+.link-switch a { 
+    color: #00f2fe; 
+    text-decoration: none; 
+    font-weight: 600; 
+}
+.link-switch a:hover {
+    text-decoration: underline;
+}
