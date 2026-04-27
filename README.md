@@ -69,3 +69,19 @@ Elysium_Group_Project/
 ├── img/                # Tài nguyên hình ảnh
 ├── video/              # Tài nguyên video
 └── README.md           # Tài liệu dự án
+## 🛠️ 5. Hướng dẫn Cài đặt & Khởi chạy
+
+Để chạy dự án này trên máy tính cá nhân, bạn có thể thực hiện theo các bước sau:
+
+### 5.1. Yêu cầu hệ thống
+Trước khi bắt đầu, hãy đảm bảo bạn đã cài đặt các công cụ sau:
+* **Trình duyệt web:** Chrome, Edge, Firefox hoặc Safari (phiên bản mới nhất).
+* **Trình soạn thảo mã nguồn:** [Visual Studio Code (VS Code)](https://code.visualstudio.com/) (Khuyên dùng).
+* **Git:** [Tải Git tại đây](https://git-scm.com/) (Nếu bạn muốn clone dự án từ GitHub).
+
+### 5.2. Các bước cài đặt
+
+**Bước 1: Tải mã nguồn về máy**
+* **Cách 1 (Dùng Git):** Mở terminal (hoặc Command Prompt) và chạy lệnh:
+  ```bash
+  git clone [https://github.com/dieuthao02/elysium.github.io.git](https://github.com/dieuthao02/elysium.github.io.git)
